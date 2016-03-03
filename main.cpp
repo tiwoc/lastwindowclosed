@@ -1,32 +1,29 @@
-#include <cassert>
 #include <iostream>
 
 #include <QApplication>
 #include <QSystemTrayIcon>
 #include <QQmlApplicationEngine>
-#include <QQuickWindow>
 
 #include "mainwindow.h"
 
+#define USE_WIDGETS 0
 #define USE_QML 1
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-#if not USE_QML
-    MainWindow window;
-    window.show();
-#else
+#if USE_WIDGETS
+    MainWindow widget;
+    widget.show();
+#endif
+#if USE_QML
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/main.qml"));
-    assert(engine.rootObjects().size() == 1);
-    QQuickWindow *window = qobject_cast<QQuickWindow*>(engine.rootObjects()[0]);
-    window->show();
 #endif
 
-    // the code works if these two lines are commented out
     QSystemTrayIcon trayIcon;
+    // the code works if the following line is commented out
     trayIcon.show();
 
     QObject::connect(&app, &QApplication::lastWindowClosed, []()

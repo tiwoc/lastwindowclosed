@@ -16,3 +16,6 @@ RESOURCES += \
 
 DISTFILES += \
     main.qml
+
+OTHER_FILES += \
+    README.md

@@ -1,18 +1,5 @@
-import QtQuick.Controls 1.4
+import QtQuick.Window 2.2
 
-ApplicationWindow {
-    id: root
-
-    Button {
-        text: "close"
-
-        onClicked: {
-            console.log("close button clicked")
-            root.close()
-        }
-    }
-
-    onClosing: {
-        console.log("onClosing()")
-    }
+Window {
+    visible: true
 }
